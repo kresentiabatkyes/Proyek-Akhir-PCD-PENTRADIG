@@ -43,7 +43,7 @@ class ImageProcessingApp:
         main_content = tk.Frame(self.root, bg="#E8ECEF")
         main_content.pack(fill="both", expand=True, padx=10, pady=10)
 
-        # SIDEBAR KIRI (Lebar disesuaikan ke 360 agar tata letak tombol lebih aman)
+        # SIDEBAR KIRI 
         sidebar = tk.Frame(main_content, bg="#E8ECEF", width=360)
         sidebar.pack(side="left", fill="y", padx=(0, 10))
         sidebar.pack_propagate(False)
@@ -135,7 +135,7 @@ class ImageProcessingApp:
         logic_btns.pack(pady=8)
         ops = [("NOT", 0), ("AND", 1), ("OR", 2), ("XOR", 3)]
         for text, col in ops:
-            # Menggunakan padx=6 agar susunan rapi dan XOR tidak terpotong ke bawah canvas
+            
             tk.Radiobutton(logic_btns, text=text, variable=self.logic_var, value=text,
                            bg="white", fg="#2C3E50", selectcolor="#BDC3C7",
                            activebackground="#ECF0F1", activeforeground="#2C3E50").grid(row=0, column=col, padx=6)
@@ -313,7 +313,6 @@ class ImageProcessingApp:
             
         _, binary_img = cv2.threshold(gray, thresh_val, 255, cv2.THRESH_BINARY)
         
-        # Diperbarui ke processed_img agar sinkron saat disimpan
         self.processed_img = binary_img.copy()
         self.display_img = binary_img.copy()
         
@@ -326,7 +325,6 @@ class ImageProcessingApp:
         brightness_val = int(float(val))
         self.brightness_value_label.config(text=f"Nilai: {brightness_val}")
         
-        # Diperbarui ke processed_img agar sinkron saat disimpan
         self.processed_img = cv2.convertScaleAbs(self.original_img, alpha=1, beta=brightness_val)
         self.display_img = self.processed_img.copy()
         
